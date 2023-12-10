@@ -24,7 +24,7 @@ curl --silent --fail-with-body --output "$tmpfile"\
 
 ## Only update authorized_keys file if the API call returned content
 if [ $(stat --printf '%s' "$tmpfile") -gt 0 ]; then 
-  echo "Updating $authorized_keys from github account $username)" >&2
+  echo "Updating $authorized_keys from github account $username" >&2
   
   mkdir -p "/home/$username/.ssh/authorized_keys.d"
   jq --raw-output "map(\"\\(.key) $username\\(.id)@github.com\")[]" <"$tmpfile" | tee "$authorized_keys"
@@ -32,5 +32,5 @@ if [ $(stat --printf '%s' "$tmpfile") -gt 0 ]; then
   chmod 0700 "/home/$username/.ssh/authorized_keys.d"
   chmod 0600 "$authorized_keys"
 else
-  echo "$authorized_keys is up to date with github account $username)" >&2
+  echo "$authorized_keys is up to date with github account $username" >&2
 fi
