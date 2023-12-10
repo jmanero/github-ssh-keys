@@ -1,0 +1,10 @@
+[Unit]
+Description=Timer to update %i's SSH authorized-keys from their github account
+Documentation=https://github.com/jmanero/github-ssh-keys
+
+[Timer]
+OnCalendar=hourly
+RandomizedDelaySec=30m
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,15 @@
+[Unit]
+Description=Update %i's SSH authorized-keys from their github account
+Documentation=https://github.com/jmanero/github-ssh-keys
+
+Wants=network-online.target local-fs.target
+After=network-online.target local-fs.target
+
+[Service]
+Type=oneshot
+User=%i
+
+ExecStart=/usr/local/bin/github-ssh-keys
+
+[Install]
+WantedBy=default.target
